@@ -6,6 +6,7 @@ let startTime;
 let productPositions = [];
 let numOfSelected = 0;
 let displayModal = true;
+let endModal = false;
 
 function preload() {
   product1 = loadImage("resources/produkt1.png");
@@ -44,6 +45,7 @@ function setup() {
   products = [product1, product2, product3, product4, product5, product6];
   selectedProducts = [false, false, false, false, false, false];
   productsSelected = [product1_selected, product2_selected, product3_selected, product4_selected, product5_selected, product6_selected];
+  
   //Wszystkie stany paska postępu
   progressBar = [bar1, bar2, bar3, bar4];
   productList = 0;
@@ -57,9 +59,10 @@ function setup() {
     startTime = millis(); // start the timer only now
     return; // prevent selecting a product on the same click
   }
-
-  // Only allow product clicks if modal is not showing
-  for (let i = 0; i < productPositions.length; i++) {
+  if (endModal === true) {
+    window.open("https://used2rack.github.io/TEMU2/");
+  } else {
+    for (let i = 0; i < productPositions.length; i++) {
     let p = productPositions[i];
     if (
       mouseX > p.x && mouseX < p.x + p.w &&
@@ -71,9 +74,10 @@ function setup() {
       }
     }
   }
+  } 
+  // Only allow product clicks if modal is not showing
+  
 }
-
-
 function draw() {
   background("#ffffff");
   
@@ -153,6 +157,7 @@ function draw() {
 
   if (numOfSelected === 3) {
     // Show the end modal
+    endModal = true;
     push();
     imageMode(CENTER);
     background(0, 0, 0, 20); // Clear the background with transparency
