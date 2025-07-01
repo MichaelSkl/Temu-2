@@ -1,6 +1,6 @@
 let products; 
 let productList;
-let imgScale = 1;
+let imgScale = 2;
 let totalTime = 120; // total seconds
 let startTime;
 let productPositions = [];
@@ -87,7 +87,7 @@ function draw() {
   push();
   
   imageMode(CENTER);
-  image(timer, width/2, 100, timer.width, timer.height);
+  image(timer, width/2, 100, timer.width/imgScale, timer.height/imgScale);
   
   let elapsed = int((millis() - startTime) / 1000);
   let remaining = max(0, totalTime - elapsed);
@@ -142,7 +142,7 @@ function draw() {
     push();
 
     imageMode(CENTER);
-    image(progressBar[numOfSelected], width/2, 500, bar1.width, bar1.height);
+    image(progressBar[numOfSelected], width/2, 500, bar1.width/imgScale, bar1.height/imgScale);
 
     pop();
 
@@ -151,7 +151,7 @@ function draw() {
   background(0, 0, 0, 20); // Clear the background with transparency
   push();
   imageMode(CENTER);
-  image(modal_start, width/2, height/2, modal_start.width, modal_start.height);
+  image(modal_start, width/2, height/2, modal_start.width/imgScale, modal_start.height/imgScale);
   pop();
   }
 
@@ -161,7 +161,7 @@ function draw() {
     push();
     imageMode(CENTER);
     background(0, 0, 0, 20); // Clear the background with transparency
-    image(modal_end, width/2, height/2, modal_end.width, modal_end.height);
+    image(modal_end, width/2, height/2, modal_end.width/imgScale, modal_end.height/imgScale);
     pop();
     
   }
